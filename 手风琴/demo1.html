@@ -1,0 +1,277 @@
+<!doctype html>
+<html>
+
+<head>
+<meta charset="utf-8" />
+<style>
+    body,ul,li,p,h3 {
+    margin: 0;
+    padding: 0
+    }
+
+    ul,ol {
+    list-style: none;
+    }
+
+    /*外框*/
+    .wrapper {
+    height: 128px;
+    border: 1px solid #d3d3d3;
+    border-color: rgba(0, 0, 0, .12);
+    overflow: hidden;
+    width: 938px;
+    background: #fff;
+    }
+
+
+    .wrapper ul * {
+    transition:all .1s linear;
+    }
+
+    .wrapper li {
+    width: 156px;
+    height: 128px;
+    float: left;
+    overflow: hidden;
+    }
+
+    .wrapper li a {
+    width: 156px;
+    height: 128px;
+    display: block;
+    position: relative;
+    cursor: pointer;
+    text-decoration: none;
+    overflow: hidden;
+    }
+
+    .wrapper li a:hover .mask {
+    opacity:0;
+    }
+
+    .wrapper li img {
+    height: 72px;
+    width: 117px;
+    position: absolute;
+    bottom: 0;
+    right: -13px;
+    }
+
+    .wrapper li .line {
+    height: 128px;
+    width: 0;
+    font-size: 0;
+    border-right: 1px dashed #cacaca;
+    position: absolute;
+    right: 0;
+    top: 4px;
+    }
+
+    .wrapper li .info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 136px;
+    padding: 4px 10px;
+    }
+
+    .wrapper li .info h3 {
+    font-size: 14px;
+    font-weight: 700;
+    }
+
+    .wrapper li .info p {
+    color: #868686;
+    font-size: 12px;
+    overflow: hidden;
+    width: 136px;
+    height: 22px;
+    line-height: 22px;
+    }
+
+    .wrapper li .info p.price {
+    font-size: 14px;
+    font-style: italic;
+    color: #fa2a5d;
+    height: 35px;
+    }
+
+    .wrapper li .info p.price strong {
+    font-size: 22px;
+    font-family: Arial;
+    padding-right: 2px;
+    }
+
+    .wrapper li .info p.price i {
+    font-size: 14px
+    }
+
+    .wrapper .mask {
+    height: 128px;
+    width: 156px;
+    display: block;
+    position:absolute;
+    top: 0;
+    left: 0;
+    background: #000;
+    opacity: 0;
+    }
+
+    /*遮罩层悬停时显示阴影*/
+    .wrapper:hover .mask {
+    opacity: .15;
+    }
+
+    /*展开状态*/
+    .wrapper .big,
+    .wrapper .big a {
+    width: 314px
+    }
+
+    .wrapper .big img {
+    width: 195px;
+    height: 120px;
+    right: 0;
+    bottom: 0;
+    }
+
+    .wrapper .big .info {
+    width: 294px;
+    }
+
+    .wrapper .big .info h3 {
+    font-size: 18px;
+    }
+
+    .wrapper .big .info p {
+    font-size: 14px;
+    width: 166px;
+    }
+
+    .wrapper .big .info p.price {
+    font-size: 16px;
+    padding-top: 7px;
+    }
+
+    .wrapper .big .info p.price strong {
+    font-size: 28px;
+    }
+
+    .wrapper .big .info p.price i {
+    font-size: 16px;
+    }
+
+    .wrapper .big .mask {
+    width: 314px;
+    }
+</style>
+</head>
+
+<body>
+    <div id="subject" class="wrapper">
+        <ul>
+            <li class="big">
+                <a href="#link1">
+                    <img src="http://gtms01.alicdn.com/tps/i1/T1Lvt3Fv4kXXbA5QAK-195-120.jpg_Q90.jpg">
+                    <div class="info">
+                        <h3 style="color:#f62368">聚美妆</h3>
+                        <p>聚美妆1/2周年庆</p>
+                        <p class="price"><strong>1</strong><i>折起</i></p>
+                    </div>
+                    <s class="line"></s>
+                    <i class="mask"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#link2">
+                    <img src="http://gtms01.alicdn.com/tps/i1/T1qxGLFsVbXXbA5QAK-195-120.jpg_Q90.jpg">
+                    <div class="info">
+                        <h3 style="color:#ff578a">Baby购</h3>
+                        <p>宝宝该换装了，新品抢购</p>
+                        <p class="price"><strong>2.5</strong><i>折起</i></p>
+                    </div>
+                    <s class="line"></s> <i class="mask"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#link2">
+                    <img src="http://gtms02.alicdn.com/tps/i2/T1KOSNFxXaXXbA5QAK-195-120.jpg_Q90.jpg">
+                    <div class="info">
+                        <h3 style="color:#6d3fa7">时装团</h3>
+                        <p>时尚春装，清新小潮搭配</p>
+                        <p class="price"><strong>1</strong><i>折起</i></p>
+                    </div>
+                    <s class="line"></s> <i class="mask"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#link3">
+                    <img src="http://gtms04.alicdn.com/tps/i4/T1CCeIFrVbXXbA5QAK-195-120.jpg_Q90.jpg">
+                    <div class="info">
+                        <h3 style="color:#d61939">TV购</h3>
+                        <p>补血养颜 就这么简单</p>
+                        <p class="price"><strong>2.6</strong><i>折起</i></p>
+                    </div>
+                    <s class="line"></s><i class="mask"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#link4">
+                    <img src="http://gtms01.alicdn.com/tps/i1/T1jmKJFyJbXXbA5QAK-195-120.jpg_Q90.jpg">
+                    <div class="info">
+                        <h3 style="color:#6f9400">聚新鲜</h3>
+                        <p>最纯正的泰国香米</p>
+                        <p class="price"><strong>5</strong><i>折起</i></p>
+                    </div>
+                    <i class="mask"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+    function bind(el, eventType, callback) {
+        if (typeof el.addEventListener === 'function') {
+            //标准事件绑定方法
+            el.addEventListener(eventType, callback, false);
+        } else if (typeof el.attechEvent === 'function') {
+            //IE事件绑定方法
+            el.attachEvent('on' + eventType, callback);
+        }
+    }
+
+    //鼠标悬停的处理函数
+    function mouseoverHandler(e) {
+    //取得外部元素
+        var outer = document.getElementById('subject');
+        //取得每个列表项
+        var list = outer.getElementsByTagName('li');
+        var target = e.target || e.srcElement
+        //清空所有LI元素的big
+        for (var i = 0; i < list.length; i++) {
+            list[i].className = ""
+        }
+        //根据事件的冒泡原理，找到需要变更class 的LI元素
+        while(target.tagName != 'LI'){
+            target = target.parentNode
+        }
+        //给当前元素加上class big
+        target.className += ' big';
+    }
+
+    function initList() {
+        //取得外部元素
+        var outer = document.getElementById('subject');
+        //取得每个列表项
+        var list = outer.getElementsByTagName('li');
+        for (var i = 0; i < list.length; i++) {
+            //对每个列表绑定鼠标悬停事件的监听
+            bind(list[i], 'mouseover', mouseoverHandler);
+        }
+    }
+
+        //执行初始化函数
+        initList();
+    </script>
+</body>
+
+</html>

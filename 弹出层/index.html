@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>弹出层</title>
+    <style>
+      #mask {
+        background-color:#ccc;
+        opacity:0.5;
+        filter: alpha(opacity=50); 
+        position:absolute; 
+        left:0;
+        top:0;
+        z-index:2;
+      }
+      #login {
+        width: 600px;
+        line-height: 300px;
+        font-size: 50px;
+        position: fixed;
+        border: 2px solid #141414;
+        border-radius: 2px;
+        text-align: center;
+        background: #00bcd4;
+        color: #e91e63;
+        z-index: 3;
+        display: none;
+      }
+      #close {
+          position: absolute;
+          right: 0;
+      }
+      .content {
+          height: 2000px;
+      }
+    </style>
+</head>
+<body>
+    <input type="button" value="弹出" id="loginBtn">
+    <div class="content"></div>
+    <div id="login">我是弹出层<img src="close.png" id="close"></div>
+    <script>
+      var openPanle = function () {
+        var maskHeight = document.documentElement.scrollHeight
+        var maskWidth = document.documentElement.scrollWidth
+        var mask = document.createElement('div')
+        mask.id = 'mask'
+        mask.style.height = maskHeight + 'px'
+        mask.style.width = maskWidth + 'px'
+        // 点击页面其他位置也能关闭弹出层
+        mask.onclick = function () {
+            closePanle()
+        }
+        document.body.appendChild(mask)
+        var login = document.getElementById('login')
+        login.style.display = 'block'
+        var loginHeight = login.offsetHeight
+        var loginWidth = login.offsetWidth
+        // 页面可视区域的高度
+        var clientHeight = document.documentElement.clientHeight
+        // 设置弹出层在页面中央
+        login.style.top = (clientHeight - loginHeight) / 2 + 'px'
+        login.style.left = (maskWidth - loginWidth) / 2 + 'px'
+        // 弹出层出现时禁止页面滚动
+        document.body.style.overflow = 'hidden'
+      }
+      var closePanle = function () {
+        var login = document.getElementById('login')
+        var mask = document.getElementById('mask')
+        document.body.removeChild(mask)
+        login.style.display = 'none'
+        // 隐藏弹出层恢复页面滚动
+        document.body.style.overflow = 'auto'
+      }
+      window.onload = function () {
+          var close = document.getElementById('close')
+          var btn = document.getElementById('loginBtn')
+          btn.onclick = function () {
+              openPanle()
+          }
+          close.onclick = function () {
+              closePanle()
+          }
+      }
+    </script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>放大镜</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+
+        #demo {
+            display: block;
+            width: 400px;
+            height: 255px;
+            margin: 50px;
+            position: relative;
+            border: 1px solid #ccc;
+        }
+
+        #small-box {
+            position: relative;
+            z-index: 1;
+        }
+
+        #float-box {
+            display: none;
+            width: 160px;
+            height: 120px;
+            position: absolute;
+            background: #ffffcc;
+            border: 1px solid #ccc;
+            filter: alpha(opacity=50);
+            opacity: 0.5;
+            cursor: move;
+        }
+
+        #mark {
+            position: absolute;
+            display: block;
+            width: 400px;
+            height: 255px;
+            /* 遮罩层层叠顺序要大于图片和放大镜 */
+            z-index: 10;
+            background: #fff;
+            filter: alpha(opacity=0);
+            opacity: 0;
+            cursor: move;
+        }
+
+        #big-box {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 460px;
+            width: 400px;
+            height: 300px;
+            overflow: hidden;
+            border: 1px solid #ccc;
+            z-index: 1;
+        }
+
+        #big-box img {
+            position: absolute;
+            z-index: 5
+        }
+    </style>
+    <script>
+        //页面加载完毕后执行
+        window.onload = function () {
+
+            var objDemo = document.getElementById("demo");
+            var objSmallBox = document.getElementById("small-box");
+            var objMark = document.getElementById("mark");
+            var objFloatBox = document.getElementById("float-box");
+            var objBigBox = document.getElementById("big-box");
+            var objBigBoxImage = objBigBox.getElementsByTagName("img")[0];
+            // 在mark层触发事件，兼容ie
+            // 如果不使用mark层或mark的层叠顺序比放大镜小，在ie下回发生闪烁，重复触发事件
+            // 因为在ie下，当mouseover后出现放大镜，放大镜出现在图片层之上，
+            // 这时ie会认为鼠标已经离开图片，触发mouseout事件使放大镜隐藏，
+            // 然后鼠标又回到图片，又触发mouseover。。。。
+            // 所以要使用一个层叠顺序比图片放大镜都大的遮罩层，并且遮罩层一定要设置背景（透明白色），否则触发不了事件
+            // 此时在遮罩层绑定事件，就能正常触发事件
+            objMark.onmouseover = function () {
+                objFloatBox.style.display = "block";
+                objBigBox.style.display = "block";
+            }
+
+            objMark.onmouseout = function () {
+                objFloatBox.style.display = "none";
+                objBigBox.style.display = "none";
+            }
+
+            objMark.onmousemove = function (ev) {
+                var ev = ev || window.event
+                var floatBoxLeft = ev.clientX - objDemo.offsetLeft - objSmallBox.offsetLeft - objFloatBox.offsetWidth / 2
+                var floatBoxTop = ev.clientY - objDemo.offsetTop - objSmallBox.offsetTop - objFloatBox.offsetHeight / 2
+                if(floatBoxLeft < 0) {
+                    floatBoxLeft = 0
+                } else if (floatBoxLeft > objSmallBox.offsetWidth - objFloatBox.offsetWidth) {
+                    floatBoxLeft = objSmallBox.offsetWidth - objFloatBox.offsetWidth
+                }
+                if(floatBoxTop < 0) {
+                    floatBoxTop = 0
+                } else if (floatBoxTop > objSmallBox.offsetHeight - objFloatBox.offsetHeight) {
+                    floatBoxTop = objSmallBox.offsetHeight - objFloatBox.offsetHeight - 2
+                }
+                objFloatBox.style.left = floatBoxLeft + 'px'
+                objFloatBox.style.top = floatBoxTop + 'px'
+                var bigBoxLeft = floatBoxLeft / (objMark.offsetWidth - objFloatBox.offsetWidth) * (objBigBoxImage.offsetWidth - objBigBox.offsetWidth)
+                var bigBoxTop = floatBoxTop / (objMark.offsetHeight - objFloatBox.offsetHeight) * (objBigBoxImage.offsetHeight - objBigBox.offsetHeight)
+                objBigBoxImage.style.left = -bigBoxLeft + 'px'
+                objBigBoxImage.style.top = -bigBoxTop + 'px'
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div id="demo">
+        <div id="small-box">
+            <!-- 兼容ie -->
+            <div id="mark"></div>
+            <div id="float-box"></div>
+            <img src="http://img.mukewang.com/537d77fb0001559d04000255.jpg" />
+        </div>
+        <div id="big-box">
+            <img src="http://img.mukewang.com/537d781b0001c04210240654.jpg" />
+        </div>
+    </div>
+</body>
+
+</html>
