@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="carousel.js"></script>
+    <style>
+        ul,li {
+            list-style-type: none;
+        }
+        a {
+            text-decoration: none;
+        }
+        .container {
+            position: relative;
+            margin-top: 50px;
+        }
+        .container .img-list a, .container .img-list img {
+            display: block;
+        }
+        .container .img-list img {
+            width: 100%;
+        }
+        .container .img-list .img-item {
+            position: absolute;
+            top: 0;
+        }
+        .btn {
+            position: absolute;
+            top: 0;
+            cursor: pointer;
+        }
+        .prev {
+            left: 0;
+            background: url(images/btn_l.png) no-repeat center center
+        }
+        .next {
+            right: 0;
+            background: url(images/btn_r.png) no-repeat center center
+        }
+    </style>
+</head>
+<body>
+    <div class="container container1">
+        <ul class="img-list">
+            <li class="img-item"><a href="#"><img src="images/1.jpg" alt=""></a></li>
+            <li class="img-item"><a href="#"><img src="images/2.jpg" alt=""></a></li>
+            <li class="img-item"><a href="#"><img src="images/3.jpg" alt=""></a></li>
+            <li class="img-item"><a href="#"><img src="images/4.jpg" alt=""></a></li>
+            <li class="img-item"><a href="#"><img src="images/5.jpg" alt=""></a></li>
+        </ul>
+        <div class="btn prev"></div>
+        <div class="btn next"></div>
+    </div>
+    <div class="container container2">
+        <ul class="img-list">
+            <li class="img-item"><a href="#"><img src="images/1.jpg" alt=""></a></li>
+            <li class="img-item"><a href="#"><img src="images/2.jpg" alt=""></a></li>
+            <li class="img-item"><a href="#"><img src="images/3.jpg" alt=""></a></li>
+            <li class="img-item"><a href="#"><img src="images/4.jpg" alt=""></a></li>
+            <li class="img-item"><a href="#"><img src="images/5.jpg" alt=""></a></li>
+            <li class="img-item"><a href="#"><img src="images/4.jpg" alt=""></a></li>
+            <li class="img-item"><a href="#"><img src="images/5.jpg" alt=""></a></li>
+        </ul>
+        <div class="btn prev"></div>
+        <div class="btn next"></div>
+    </div>
+</body>
+<script>
+    $(function(){
+        $.carousel($('.container1'))
+        $.carousel($('.container2'), {
+            width: 1200,
+            verticalAlign: 'bottom'
+        })
+    })
+</script>
+</html>
