@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>无线滚动效果</title>
+  <style>
+  *{
+    margin: 0;
+    padding: 0;
+  }
+  body{
+    font-size: 17px;
+    font-family: '微软雅黑';
+  }
+  header{
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    width: 100%;
+    height: 44px;
+    justify-content: space-around;
+    background-color: #f7f7f8;
+    border-bottom: 1px solid #ccc;
+  }
+  header h1{
+    font-size: inherit;
+    font-weight: 400;
+    line-height: 44px;
+  }
+  .main{
+    background-color: #efeff4;
+    padding-top: 40px;
+  }
+  #list{
+    margin: 35px 0 20px 0;
+background-color: #fff;
+border-top: 1px solid #ccc;
+list-style-type: none;
+  }
+  li{
+    margin-left: 15px;
+  padding: 12px 0;
+  border-bottom: 1px solid #ccc;
+  }
+  #info{
+    width: 100%;
+    text-align: center;
+    font-size: inherit;
+    height: 30px;
+    line-height: 30px;
+  }
+  dot{
+    display:inline-block;
+    height: 1em;
+    line-height: 1;
+    text-align: left;
+    vertical-align: -.25em;
+    overflow: hidden;
+  }
+  dot:before{
+    display: block;
+    content:'...\A..\A.';
+    white-space: pre-wrap;
+    animation: dot 3s infinite step-start both;
+  }
+  @keyframes dot {
+    33%{transform: translateY(-2em);}
+    66%{transform: translateY(-1em);}
+  }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Infinite Scroll</h1>
+  </header>
+  <div class="main">
+    <ul id="list">
+    </ul>
+    <div id="info">正在加载中<dot>...</dot></div>
+  </div>
+<script src="main.js"></script>
+</body>
+</html>

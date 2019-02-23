@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <style>
+  body{
+    background: #333;
+  }
+  #box{
+    position: absolute;
+    top: 100px;
+    left: 200px;
+    width: 500px;
+    height: 500px;
+  }
+  #img1{
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: .6;
+  }
+  #img2{
+    position: absolute;
+    left: 0;
+    top: 0;
+    clip: rect(0 300px 300px 0);
+  }
+  #main{
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border: 1px solid #fff;
+    cursor: move;
+  }
+  .minDiv{
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #fff;
+  }
+  .left-up{
+    left: -4px;
+    top: -4px;
+    cursor: nw-resize;
+  }
+  .up-mid{
+    left: 50%;
+    margin-left: -4px;
+    top: -4px;
+    cursor: n-resize;
+  }
+  .right-up{
+    right: -4px;
+    top: -4px;
+    cursor: ne-resize;
+  }
+  .left-mid{
+    top: 50%;
+    margin-top: -4px;
+    left: -4px;
+    cursor: w-resize;
+  }
+  .left-bottom{
+    bottom: -4px;
+    left: -4px;
+    cursor: sw-resize;
+  }
+  .right-mid{
+    right: -4px;
+    top: 50%;
+    margin-top: -4px;
+    cursor: e-resize;
+  }
+  .right-bottom{
+    right: -4px;
+    bottom: -4px;
+    cursor: se-resize;
+  }
+  .bottom-mid{
+    left: 50%;
+    margin-left: -4px;
+    bottom: -4px;
+    cursor: s-resize;
+  }
+  #preview{
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    left: 1000px;
+    top: 100px;
+  }
+  #preview img{
+    position: absolute;
+  }
+  </style>
+  <title>图片裁剪器</title>
+</head>
+<body>
+  <!-- 使用outline也能实现相同效果：http://demo.cssworld.cn/11/1-1.php CSS世界第305页 -->
+  <div id="box">
+    <img src="img.jpg" alt="" id="img1">
+    <img src="img.jpg" alt="" id="img2">
+    <div id="main">
+      <div class="minDiv left-up" id="leftUp"></div>
+      <div class="minDiv up-mid" id="upMid"></div>
+      <div class="minDiv right-up" id="rightUp"></div>
+      <div class="minDiv left-mid" id="leftMid"></div>
+      <div class="minDiv left-bottom" id="leftDown"></div>
+      <div class="minDiv right-mid" id="rightMid"></div>
+      <div class="minDiv right-bottom" id="rightDown"></div>
+      <div class="minDiv bottom-mid" id="downMid"></div>
+    </div>
+  </div>
+  <div id="preview">
+    <img src="img.jpg" alt="" id="img3">
+  </div>
+  <script src="main.js"></script>
+  <!-- <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+  <script src="jquery-ui-1.10.4.custom.min.js"></script> -->
+  <!-- <script src="zxx.drag.1.0-min.js"></script> -->
+</body>
+</html>
