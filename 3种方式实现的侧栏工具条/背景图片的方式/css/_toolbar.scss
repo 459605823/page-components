@@ -1,0 +1,73 @@
+@mixin setPos($pos, $hoverPos) {
+    background-position: 0 $pos;
+    &:hover {
+        background-position: 0 $hoverPos;
+    }
+}
+
+$toolbar-size: 52px;
+
+.toolbar {
+    position: fixed;
+    left: 50%;
+    margin-left: -$toolbar-size / 2;
+    bottom: 5px;
+}
+
+.toolbar-item,
+.toolbar-layer {
+    background: url(../../img/toolbar.png) no-repeat;
+}
+
+.toolbar-item {
+    position: relative;
+    display: block;
+    width: $toolbar-size;
+    height: $toolbar-size;
+    margin-top: 1px;
+    @include transition(background-position 1s);
+
+    &:hover {
+        .toolbar-layer {
+            @include opacity(1);
+            @include scale(1);
+        }
+    }
+}
+
+.toolbar-item-weixin {
+    @include setPos(-798px, -860px);
+
+    .toolbar-layer {
+        height: 212px;
+        background-position: 0 0;
+    }
+}
+
+.toolbar-item-feedback {
+    @include setPos(-426px, -488px);
+}
+
+.toolbar-item-top {
+    @include setPos(-674px, -736px);
+}
+
+.toolbar-item-app {
+    @include setPos(-550px, -612px);
+
+    .toolbar-layer {
+        height: 194px;
+        background-position: 0 -222px;
+    }
+}
+
+.toolbar-layer {
+    position: absolute;
+    right: $toolbar-size - 6px;
+    bottom: -10px;
+    width: 172px;
+    @include opacity(0);
+    @include scale(0.01);
+    @include transition(all 1s);
+    @include transform-origin(95% 95%);
+}

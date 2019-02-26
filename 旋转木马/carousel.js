@@ -11,20 +11,8 @@
        this.firstImg = this.imgItems.first()
        this.lastImg = this.imgItems.last()
        this.animateFlag = false
-       // 默认配置参数
-       this.DEFAULT = {
-           width: 1000, // 幻灯片宽度
-           height: 270, // 幻灯片高度
-           posterWidth: 640, // 第一帧宽度
-           posterHeight: 270, // 第一帧高度
-           scale: 0.9, // 每张图片相对缩放比例
-           speed: 500, // 轮播速度
-           autoplay: true, // 是否自动轮播
-           delay: 2000, // 自动轮播延时
-           verticalAlign: 'middle' // 图片垂直对齐方式 top bottom
-       }
        // 组合默认参数和用户传递参数
-       this.setting = $.extend({}, this.DEFAULT, options)
+       this.setting = $.extend({}, Carousel.DEFAULT, options)
        // 设置基础样式
        this.setStyle()
        // 设置左右图片样式
@@ -52,6 +40,19 @@
            })
        }
    }
+        // 默认配置参数
+        // 共有变量定义在构造函数上，避免每个实例都生成私有变量
+       Carousel.DEFAULT = {
+           width: 1000, // 幻灯片宽度
+           height: 270, // 幻灯片高度
+           posterWidth: 640, // 第一帧宽度
+           posterHeight: 270, // 第一帧高度
+           scale: 0.9, // 每张图片相对缩放比例
+           speed: 500, // 轮播速度
+           autoplay: true, // 是否自动轮播
+           delay: 2000, // 自动轮播延时
+           verticalAlign: 'middle' // 图片垂直对齐方式 top bottom
+       }
    Carousel.prototype = {
        // 自动播放
        autoplay: function () {
