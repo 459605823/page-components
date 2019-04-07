@@ -9,11 +9,14 @@ window.onload = function () {
     var timer = null
     function animate (offset) {
        var left = parseInt(list.style.left) + offset
-       // 到最后一张后，再点击切换到第一张
-       if(left < -2400) left = 0
-       // 到最后一张后，再点击切换到第一张
-       if(left > 0) left = -2400
+       console.log(left)
        list.style.left = left + 'px'
+       if(left < -3000) {
+          list.style.left = -600 + 'px'
+       }
+       if(left > -600) {
+          list.style.left = -3000 + 'px'
+       }
     }
     // 按钮样式改变
     function showBtn () {

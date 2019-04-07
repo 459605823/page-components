@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .upload {
+            float: left;
+        }
+        .picContainer {
+            width: 400px;
+            height: 400px;
+            margin-bottom: 20px;
+        }
+        .add {
+           color: #eee;
+           position: relative;
+           background-color: #ccc;
+           border: 5px dashed;
+           transition: color .2s ease-in;
+        }
+        .add::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            border-top: 5px solid;
+            top: 50%;
+            left: 50%;
+            margin-left: -50px;
+        }
+        .add::before {
+            content: '';
+            position: absolute;
+            height: 100px;
+            border-left: 5px solid;
+            top: 50%;
+            left: 50%;
+            margin-top: -50px;
+        }
+        .add:hover {
+            color: #000;
+        }
+        .pre {
+            margin-left: 500px;
+        }
+        .previewContianer {
+            width: 200px;
+            height: 200px;
+            background-color: #ccc;
+            border: 5px dashed #eee;
+        }
+        .previewBanner {
+            width: 60px;
+            padding: 0 5px;
+            line-height: 20px;
+            text-align: center;
+            color: #fff;
+            background-color: #ccc;
+            border-radius: 5px;
+            font-size: 10px;
+            margin-top: 10px;
+        }
+        .preview {
+            width: 100%;
+            height: 100%;
+            display: none;
+            z-index: 5;
+        }
+    </style>
+</head>
+<body>
+    <div class="upload">
+       <div class="picContainer add"><img src="#" alt="" class="preview"></div>
+       <input type="file" value="选择图片" class="choosePic">
+       <input type="button" value="上传图片" class="uploadPic">
+    </div>
+    <div class="pre">
+        <div class="previewContianer"><img src="#" alt="" class="preview"></div>
+        <div class="previewBanner">图片预览</div>
+    </div>
+    <script>
+        var fileList = document.getElementsByClassName("choosePic")[0]
+        fileList.onchange = function(e) {
+           var target = e.target || e.srcElement
+           var file = target.files[0]
+           var reader = new FileReader()
+           var preview = document.getElementsByClassName("preview")
+           reader.readAsDataURL(file)
+           reader.onload = function() {
+              for(var i = 0; i < preview.length; i++){
+                preview[i].src = this.result
+                preview[i].style.display = "block" 
+              }
+           }
+        }
+        var add = document.getElementsByClassName("add")[0]
+        add.onclick = function() {
+            fileList.click()
+        }
+        function handleEvent(e) {
+            e.preventDefault()
+            if (e.type == "drop") {
+                file = e.dataTransfer.files[0]
+                var reader = new FileReader()
+                var preview = document.getElementsByClassName("preview")
+                reader.readAsDataURL(file)
+                reader.onload = function() {
+                    for(var i = 0; i < preview.length; i++){
+                        preview[i].src = this.result
+                        preview[i].style.display = "block" 
+                    }
+                }
+            }
+        }
+        add.addEventListener("dragEnter", handleEvent)
+        add.addEventListener("dragover", handleEvent)
+        add.addEventListener("drop", handleEvent)
+        var uploadPic = document.getElementsByClassName("uploadPic")[0]
+        uploadPic.onclick = function() {
+            var file = fileList.files[0]
+            var formData = new FormData()
+            formData.append("img", file)
+            var xhr = new XMLHttpRequest()
+            xhr.open("post", "http://api.leihuo.163.com/upload?sxc=nmsl", true)
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4) {
+                    console.log(xhr.responseText)
+                } else {
+                    console.log(xhr.status)
+                }
+            }
+            xhr.send(formData)
+        }
+    </script>
+</body>
+</html>
